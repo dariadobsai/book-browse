@@ -1,5 +1,7 @@
 package hu.dobszai.bookbrowse.utils
 
+import android.content.Context
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import hu.dobszai.bookbrowse.R
@@ -17,4 +19,4 @@ fun AppCompatActivity.disableAppBarTitle() =
     this.supportActionBar?.setDisplayShowTitleEnabled(false)
 
 
-
+fun Context.displayToast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_LONG)

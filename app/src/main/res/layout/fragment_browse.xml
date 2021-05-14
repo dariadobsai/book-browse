@@ -9,16 +9,34 @@
         android:orientation="vertical"
         tools:context=".ui.BrowseFragment">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
+        <LinearLayout
+            android:id="@+id/search_area"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#55F5F5F5"
-            android:elevation="1dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="10"
+                android:background="#55F5F5F5"
+                android:elevation="1dp" />
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:width="0dp"
+                android:text="Search" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -49,7 +67,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_view"
+            app:layout_constraintTop_toBottomOf="@id/search_area"
             tools:listitem="@layout/list_books" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="booksViewModel"
+            type="hu.dobszai.bookbrowse.viewmodels.BookViewModel" />
+    </data>
 </layout>

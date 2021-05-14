@@ -15,12 +15,42 @@ buildscript {
 
 
 ext {
+    // Navigation
     def nav_version = "2.3.5"
     navigation = [
             fragment: "androidx.navigation:navigation-fragment-ktx:$nav_version",
             ui: "androidx.navigation:navigation-ui-ktx:$nav_version",
             test: "androidx.navigation:navigation-testing:$nav_version"
 
+    ]
+
+    // Retrofit and Moshi
+    def retrofit_version = "2.9.0"
+    def moshi_version = "1.12.0"
+    network = [
+            retrofit2: "com.squareup.retrofit2:retrofit:$retrofit_version",
+            converter: "com.squareup.retrofit2:converter-moshi:$retrofit_version",
+            moshi: "com.squareup.moshi:moshi:$moshi_version",
+            kotlin: "com.squareup.moshi:moshi-kotlin:$moshi_version",
+            adapter: "com.squareup.moshi:moshi-adapters:$moshi_version",
+
+    ]
+
+    // Coroutines
+    def coroutines_version = "1.5.0"
+    def coroutine_adapter = "0.9.2"
+    coroutines = [
+            core: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
+            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
+            adapter: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutine_adapter"
+    ]
+
+    // Room
+    def room_version = "2.3.0"
+    database = [
+            room: "androidx.room:room-runtime:$room_version",
+            coroutines: "androidx.room:room-ktx:$room_version",
+            test: "androidx.room:room-testing:$room_version",
     ]
 }
 

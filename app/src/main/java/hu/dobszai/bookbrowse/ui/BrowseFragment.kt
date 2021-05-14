@@ -4,27 +4,39 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import hu.dobszai.bookbrowse.R
+import hu.dobszai.bookbrowse.adapters.BookListAdapter
 import hu.dobszai.bookbrowse.databinding.FragmentBrowseBinding
+import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.utils.appBarConfiguration
 import hu.dobszai.bookbrowse.utils.disableAppBarTitle
+import hu.dobszai.bookbrowse.viewmodels.BookViewModel
 
-private lateinit var binding: FragmentBrowseBinding
+class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
 
-class BrowseFragment : Fragment() {
+    private lateinit var viewModel: BookViewModel
+    private lateinit var binding: FragmentBrowseBinding
+    private lateinit var adapter: BookListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-
         binding = FragmentBrowseBinding.inflate(inflater)
 
         setHasOptionsMenu(true)
+
+        viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+        binding.booksViewModel = viewModel
+
+        setUpRecyclerView()
+
+        searchBook()
 
         val activity = activity as AppCompatActivity
         activity.apply {
@@ -58,5 +70,29 @@ class BrowseFragment : Fragment() {
                 it.findNavController()
             )
         } == true || super.onOptionsItemSelected(item)
+    }
+
+    private fun searchBook() {
+        binding.btnSearch.setOnClickListener {
+            val searchInput = binding.searchView.toString()
+            if (viewModel.validateSearchField(searchInput)) {
+               viewModel.fetchBooks(searchInput)
+            }
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        adapter = BookListAdapter(this)
+        binding.listBooks.adapter = adapter
+
+        viewModel.books.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter.setBookList(it)
+            }
+        })
+    }
+
+    override fun onBookClick(book: Book) {
+        TODO("Not yet implemented")
     }
 }

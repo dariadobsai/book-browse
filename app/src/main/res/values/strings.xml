@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BookBrowse</string>
+    <string name="nav_home">Book Browse</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="menu_favorites">Favorites</string>
 </resources>
+
+

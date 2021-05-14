@@ -22,7 +22,7 @@ class FavoritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFavoritesBinding.inflate(inflater)
-        
+
         return binding.root
     }
 

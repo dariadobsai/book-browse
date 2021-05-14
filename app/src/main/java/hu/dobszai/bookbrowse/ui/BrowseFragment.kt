@@ -24,10 +24,6 @@ class BrowseFragment : Fragment() {
 
         binding = FragmentBrowseBinding.inflate(inflater)
 
-        binding.open.setOnClickListener {
-            it.findNavController().navigate(R.id.detailsFragment)
-        }
-
         setHasOptionsMenu(true)
 
         val activity = activity as AppCompatActivity

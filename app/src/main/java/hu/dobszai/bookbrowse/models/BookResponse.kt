@@ -2,20 +2,19 @@ package hu.dobszai.bookbrowse.models
 
 import com.squareup.moshi.JsonClass
 
-class BookResponse {
-    @JsonClass(generateAdapter = true)
-    data class BookResponse(
-        val items: List<Book>,
-        val totalItems: Int
-    )
+@JsonClass(generateAdapter = true)
+data class BookResponse(
+    val items: List<Book>,
+    val totalItems: Int
+)
 
-    fun BookResponse.asDatabaseModel(): Array<Book> {
-        return items.map {
-            Book(
-                id = it.id,
-                volumeInfo = it.volumeInfo,
-                favorite = it.favorite
-            )
-        }.toTypedArray()
-    }
+fun BookResponse.asDatabaseModel(): Array<Book> {
+    return items.map {
+        Book(
+            id = it.id,
+            volumeInfo = it.volumeInfo,
+            favorite = it.favorite
+        )
+    }.toTypedArray()
 }
+

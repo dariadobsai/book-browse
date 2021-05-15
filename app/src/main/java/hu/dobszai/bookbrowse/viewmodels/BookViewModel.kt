@@ -3,7 +3,6 @@ package hu.dobszai.bookbrowse.viewmodels
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.base.BaseViewModel
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.repo.BookRepository
@@ -18,23 +17,14 @@ class BookViewModel(app: Application) : BaseViewModel(app) {
 
     private val totalItems = MutableLiveData<Int>()
 
-    fun fetchBooks(searchInput : String) {
+    fun findBook(searchInput : String) {
         viewModelScope.launch {
             try {
-               val bookResponse = bookRepository.fetchBooks(searchInput)
+                _books.value = bookRepository.fetchBooks(searchInput).items
 
             } catch (t: Throwable) {
 
             }
         }
-    }
-
-    fun validateSearchField(searchInput : String): Boolean {
-        if (searchInput.isNullOrEmpty()) {
-            showSnackBarInt.value = R.string.book_title_required
-            return false
-        }
-
-        return false
     }
 }

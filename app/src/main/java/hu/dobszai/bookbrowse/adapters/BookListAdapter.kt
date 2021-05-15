@@ -57,7 +57,7 @@ class BookListAdapter(val clickListener: ClickListener) :
 
         fun bind(book: Book) {
             with(binding) {
-                //bookModel = book
+                bookModel = book
                 executePendingBindings()
             }
         }

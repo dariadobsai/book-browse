@@ -2,6 +2,7 @@ package hu.dobszai.bookbrowse.ui
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,11 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
     private lateinit var binding: FragmentBrowseBinding
     private lateinit var adapter: BookListAdapter
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,20 +35,21 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
 
         binding = FragmentBrowseBinding.inflate(inflater)
 
-        setHasOptionsMenu(true)
-
-        viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
-        binding.booksViewModel = viewModel
-
-        setUpRecyclerView()
-
-        searchBook()
-
         val activity = activity as AppCompatActivity
         activity.apply {
             setSupportActionBar(binding.toolbar)
             disableAppBarTitle()
         }
+
+        viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+        binding.apply {
+            lifecycleOwner = this@BrowseFragment
+            booksViewModel = viewModel
+        }
+
+        setUpRecyclerView()
+        populateBookList()
+        searchBook()
 
         return binding.root
     }
@@ -74,9 +81,10 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
 
     private fun searchBook() {
         binding.btnSearch.setOnClickListener {
-            val searchInput = binding.searchView.toString()
-            if (viewModel.validateSearchField(searchInput)) {
-               viewModel.fetchBooks(searchInput)
+            if(binding.searchView.toString().isNotEmpty()){
+                viewModel.findBook(binding.searchView.toString())
+            }else{
+                Toast.makeText(context, R.string.book_title_required, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -84,7 +92,9 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
     private fun setUpRecyclerView() {
         adapter = BookListAdapter(this)
         binding.listBooks.adapter = adapter
+    }
 
+    private  fun populateBookList() {
         viewModel.books.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.setBookList(it)

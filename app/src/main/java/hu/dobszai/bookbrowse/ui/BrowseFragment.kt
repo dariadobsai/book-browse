@@ -48,7 +48,6 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
         }
 
         setUpRecyclerView()
-        populateBookList()
         searchBook()
 
         return binding.root
@@ -81,8 +80,10 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
 
     private fun searchBook() {
         binding.btnSearch.setOnClickListener {
-            if(binding.searchView.toString().isNotEmpty()){
-                viewModel.findBook(binding.searchView.toString())
+            if(binding.searchView.text.toString().isNotEmpty()){
+                viewModel.findBook(binding.searchView.text.toString())
+
+                populateBookList()
             }else{
                 Toast.makeText(context, R.string.book_title_required, Toast.LENGTH_SHORT).show()
             }

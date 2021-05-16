@@ -52,4 +52,19 @@ dependencies {
 
     // Navigation
     implementation navigation.values()
+
+    // Retrofit and Moshi
+    implementation network.values()
+
+    // Coroutines
+    implementation coroutines.values()
+
+    implementation database.room
+    implementation database.coroutines
+
+    // Testing
+    testImplementation database.test
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+
 }

@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">BookBrowse</string>
+
+    <!-- Fragments -->
     <string name="nav_home">Book Browse</string>
     <string name="nav_favorites">Favorites</string>
+
+    <!-- Menu -->
     <string name="menu_favorites">Favorites</string>
+
+    <!-- Error messages -->
+    <string name="book_title_required">Please enter a book title to the search field</string>
 </resources>
 
 

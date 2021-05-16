@@ -9,7 +9,9 @@ class BookRepository {
 
     suspend fun fetchBooks(searchInput: String): BookResponse {
         return withContext(Dispatchers.IO) {
-            BooksApi.retrofitService.getBooksAsync(searchInput).await()
+            val booksDeffered = BooksApi.retrofitService.getBooksAsync(searchInput)
+            val books = booksDeffered.await()
+            books
         }
     }
 }

@@ -1,6 +1,8 @@
 package hu.dobszai.bookbrowse.viewmodels
 
 import android.app.Application
+import android.net.wifi.WifiManager
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import hu.dobszai.bookbrowse.base.BaseViewModel
@@ -15,15 +17,17 @@ class BookViewModel(app: Application) : BaseViewModel(app) {
     private val _books = MutableLiveData<List<Book>>(mutableListOf())
     val books : LiveData<List<Book>> get() = _books
 
-    private val totalItems = MutableLiveData<Int>()
+    private val _totalItems = MutableLiveData<Int>()
+    val totalItems : LiveData<Int> get() = _totalItems
 
     fun findBook(searchInput : String) {
         viewModelScope.launch {
             try {
-                _books.value = bookRepository.fetchBooks(searchInput).items
-
+                val books = bookRepository.fetchBooks(searchInput)
+                _books.value = books.items
+                _totalItems.value = books.totalItems
             } catch (t: Throwable) {
-
+                Log.d("TAG", t.toString())
             }
         }
     }

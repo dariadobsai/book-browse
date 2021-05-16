@@ -17,8 +17,8 @@ class Book(
 
 class VolumeInfo(
     val title: String,
-    val authors: List<String>,
-    val description: String,
-    val smallThumbnail: String,
-    val thumbnail: String,
+    val authors: List<String>?,
+    val description: String?,
+    //val smallThumbnail: String?,
+    //val thumbnail: String?,
 )

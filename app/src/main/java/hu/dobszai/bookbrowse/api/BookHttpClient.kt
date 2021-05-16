@@ -30,7 +30,7 @@ class BookHttpClient : OkHttpClient() {
                 .addInterceptor { chain ->
                     val original = chain.request()
                     val url = original
-                        .url()
+                        .url
                         .newBuilder()
                         .addQueryParameter("key", API_KEY)
                         .build()

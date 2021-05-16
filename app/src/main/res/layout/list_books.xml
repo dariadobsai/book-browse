@@ -21,14 +21,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
-                app:title="@{bookModel}"
+                app:title="@{book}"
                 tools:text="Title" />
 
             <TextView
                 android:id="@+id/item_election_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:authors="@{bookModel}"
+                app:authors="@{book}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/item_election_name"
@@ -42,7 +42,7 @@
     <data>
 
         <variable
-            name="bookModel"
+            name="book"
             type="hu.dobszai.bookbrowse.models.Book" />
     </data>
 </layout>

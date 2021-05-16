@@ -5,10 +5,12 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
 import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.adapters.BookListAdapter
 import hu.dobszai.bookbrowse.databinding.FragmentBrowseBinding
@@ -16,12 +18,13 @@ import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.utils.appBarConfiguration
 import hu.dobszai.bookbrowse.utils.disableAppBarTitle
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
+import java.util.stream.Collectors
 
 class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
 
     private lateinit var viewModel: BookViewModel
     private lateinit var binding: FragmentBrowseBinding
-    private lateinit var adapter: BookListAdapter
+    private lateinit var bookAdapter: BookListAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -47,8 +50,9 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
             booksViewModel = viewModel
         }
 
-        setUpRecyclerView()
         searchBook()
+        setUpRecyclerView()
+
 
         return binding.root
     }
@@ -80,30 +84,38 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
 
     private fun searchBook() {
         binding.btnSearch.setOnClickListener {
-            if(binding.searchView.text.toString().isNotEmpty()){
+            if (binding.searchView.text.toString().isNotEmpty()) {
                 viewModel.findBook(binding.searchView.text.toString())
-
-                populateBookList()
-            }else{
+            } else {
                 Toast.makeText(context, R.string.book_title_required, Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun setUpRecyclerView() {
-        adapter = BookListAdapter(this)
-        binding.listBooks.adapter = adapter
+        bookAdapter = BookListAdapter(this)
+
+        binding.listBooks.apply {
+            adapter = bookAdapter
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+        }
+        populateBookList()
     }
 
-    private  fun populateBookList() {
+    private fun populateBookList() {
+        viewModel.totalItems.observe(viewLifecycleOwner, {
+            binding.totalItems.text = it.toString()
+        })
         viewModel.books.observe(viewLifecycleOwner, {
-            it?.let {
-                adapter.setBookList(it)
-            }
+            bookAdapter.setBookList(it)
         })
     }
 
     override fun onBookClick(book: Book) {
-        TODO("Not yet implemented")
+        Toast.makeText(context, "TODO", Toast.LENGTH_SHORT).show()
     }
 }

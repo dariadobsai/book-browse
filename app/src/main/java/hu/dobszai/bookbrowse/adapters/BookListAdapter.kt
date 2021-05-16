@@ -3,67 +3,71 @@ package hu.dobszai.bookbrowse.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.databinding.ListBooksBinding
 import hu.dobszai.bookbrowse.models.Book
 
 class BookListAdapter(val clickListener: ClickListener) :
     RecyclerView.Adapter<BookListAdapter.BooksViewHolder>() {
 
-    private var books: List<Book> = mutableListOf()
+    private var list: List<Book> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): BooksViewHolder {
 
-        val binding: ListBooksBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(parent.context),
-            R.layout.list_books,
-            parent,
-            false
-        )
+        val binding = dataBinding(parent)
 
         return BooksViewHolder(binding)
     }
+
+
+    private fun dataBinding(parent: ViewGroup): ListBooksBinding {
+        return ListBooksBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+    }
+
 
     interface ClickListener {
         fun onBookClick(book: Book)
     }
 
     override fun getItemCount(): Int {
-        return books.size
+        return if (list != null) list.size else 0
+
     }
 
     fun setBookList(books: List<Book>) {
-        if (this.books !== books)
-            this.books = books
+        if (this.list !== books)
+            this.list = books
 
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
-        holder.bind(books[position])
+        holder.bind(list[position])
     }
 
-    inner class BooksViewHolder(val binding: ListBooksBinding) :
+    inner class BooksViewHolder(private val binding: ListBooksBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
         init {
             binding.root.setOnClickListener(this)
         }
 
-        fun bind(book: Book) {
+        fun bind(b: Book) {
             with(binding) {
-                bookModel = book
+                book = b
                 executePendingBindings()
             }
         }
 
         override fun onClick(v: View?) {
-            clickListener.onBookClick(books[adapterPosition])
+            clickListener.onBookClick(list[adapterPosition])
         }
     }
 }

@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import hu.dobszai.bookbrowse.adapters.BookListAdapter
 import hu.dobszai.bookbrowse.adapters.BookListFavAdapter
 import hu.dobszai.bookbrowse.base.BaseFragment
 import hu.dobszai.bookbrowse.databinding.FragmentFavoritesBinding
 import hu.dobszai.bookbrowse.models.Book
+import hu.dobszai.bookbrowse.viewmodels.BookViewModel
 
-class FavoritesFragment : BaseFragment(), BookListFavAdapter.ClickListener{
+class FavoritesFragment : BaseFragment(), BookListFavAdapter.ClickListener {
 
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var bookAdapter: BookListFavAdapter
+    override val _viewModel: BookViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +27,7 @@ class FavoritesFragment : BaseFragment(), BookListFavAdapter.ClickListener{
 
         binding.apply {
             lifecycleOwner = this@FavoritesFragment
-            booksViewModel = viewModel
+            booksViewModel = _viewModel
         }
 
         setUpRecyclerView()
@@ -34,13 +36,13 @@ class FavoritesFragment : BaseFragment(), BookListFavAdapter.ClickListener{
     }
 
     override fun setUpRecyclerView() {
-        bookAdapter = BookListFavAdapter(this, this, viewModel)
+        bookAdapter = BookListFavAdapter(this, this, _viewModel)
         binding.listFavBooks.adapter = bookAdapter
         populateList()
     }
 
     override fun populateList() {
-        viewModel.booksFav.observe(viewLifecycleOwner, {
+        _viewModel.booksFav.observe(viewLifecycleOwner, {
             bookAdapter.setBookList(it)
         })
     }

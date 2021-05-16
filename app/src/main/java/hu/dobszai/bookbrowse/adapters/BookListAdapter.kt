@@ -47,7 +47,7 @@ class BookListAdapter(val clickListener: ClickListener,
 
 
     interface ClickListener {
-        fun onBookClick(book: Book)
+        fun onBookClick(books: List<Book>, currentBook : Int)
     }
 
     override fun getItemCount(): Int {
@@ -86,7 +86,7 @@ class BookListAdapter(val clickListener: ClickListener,
 
 
         override fun onClick(v: View?) {
-            clickListener.onBookClick(list[adapterPosition])
+            clickListener.onBookClick(list, adapterPosition)
         }
     }
 }

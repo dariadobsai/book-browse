@@ -9,9 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import hu.dobszai.bookbrowse.databinding.FragmentDetailsBinding
 
-private lateinit var binding: FragmentDetailsBinding
-
 class DetailsFragment : Fragment() {
+
+    private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

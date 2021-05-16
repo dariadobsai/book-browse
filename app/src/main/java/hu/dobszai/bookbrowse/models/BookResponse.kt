@@ -13,7 +13,6 @@ fun BookResponse.asDatabaseModel(): Array<Book> {
         Book(
             id = it.id,
             volumeInfo = it.volumeInfo,
-            favorite = it.favorite
         )
     }.toTypedArray()
 }

@@ -23,6 +23,12 @@
         android:name="hu.dobszai.bookbrowse.ui.DetailsFragment"
         android:label=""
         tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="arg_book_position"
+            app:argType="integer" />
+        <argument
+            android:name="arg_book_list"
+            app:argType="hu.dobszai.bookbrowse.models.Book[]" />
         <action
             android:id="@+id/action_detailsFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />

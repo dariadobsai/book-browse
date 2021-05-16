@@ -1,27 +1,30 @@
 package hu.dobszai.bookbrowse.models
 
-import androidx.room.ColumnInfo
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
+@Parcelize
 @Entity(tableName = "favorites_table")
 @JsonClass(generateAdapter = true)
-class Book(
+data class Book(
     @PrimaryKey val id: String,
-    @Embedded val volumeInfo : VolumeInfo,
-)
+    @Embedded val volumeInfo  : @RawValue VolumeInfo,
+) : Parcelable
 
-// TODO
-class VolumeInfo(
+// TOdo
+@Parcelize
+data class VolumeInfo(
     val title: String,
     val authors: List<String>?,
     val description: String?,
     //val smallThumbnail: String?,
     //val thumbnail: String?,
-)
-
+): Parcelable
 
 fun List<Book>.asDomainModel(): List<Book> {
     return map {

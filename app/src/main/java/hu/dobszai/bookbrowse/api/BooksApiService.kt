@@ -5,20 +5,19 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import hu.dobszai.bookbrowse.api.BookHttpClient.Companion.getClient
 import hu.dobszai.bookbrowse.models.BookResponse
+import hu.dobszai.bookbrowse.utils.QUERY_PARAMETER_KEY
+import hu.dobszai.bookbrowse.utils.VOLUMES_PARAMETER_KEY
 import kotlinx.coroutines.Deferred
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 /**
- *  Documentation for Books API can be found at https://developers.google.com/books/docs/v1/reference/volumes/list
+ *  Documentation for Books API can be found at
+ *  https://developers.google.com/books/docs/v1/reference/volumes/list
  */
 private const val BASE_URL = "https://www.googleapis.com/books/v1/"
-const val QUERY_PARAMETER_KEY = "q"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -33,8 +32,7 @@ private val retrofit = Retrofit.Builder()
 
 interface BooksApiService {
 
-    //@GET("&maxResults=20")
-    @GET("volumes")
+    @GET(VOLUMES_PARAMETER_KEY)
     fun getBooksAsync(@Query(QUERY_PARAMETER_KEY) searchInput: String): Deferred<BookResponse>
 }
 

@@ -61,6 +61,7 @@ dependencies {
 
     implementation database.room
     implementation database.coroutines
+    kapt database.kapt
 
     // Testing
     testImplementation database.test

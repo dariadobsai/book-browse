@@ -4,25 +4,20 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.adapters.BookListAdapter
+import hu.dobszai.bookbrowse.base.BaseFragment
 import hu.dobszai.bookbrowse.databinding.FragmentBrowseBinding
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.utils.appBarConfiguration
 import hu.dobszai.bookbrowse.utils.disableAppBarTitle
-import hu.dobszai.bookbrowse.viewmodels.BookViewModel
-import java.util.stream.Collectors
 
-class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
+class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
 
-    private lateinit var viewModel: BookViewModel
     private lateinit var binding: FragmentBrowseBinding
     private lateinit var bookAdapter: BookListAdapter
 
@@ -44,7 +39,6 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
             disableAppBarTitle()
         }
 
-        viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
         binding.apply {
             lifecycleOwner = this@BrowseFragment
             booksViewModel = viewModel
@@ -52,7 +46,6 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
 
         searchBook()
         setUpRecyclerView()
-
 
         return binding.root
     }
@@ -92,8 +85,8 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
         }
     }
 
-    private fun setUpRecyclerView() {
-        bookAdapter = BookListAdapter(this)
+    override fun setUpRecyclerView() {
+        bookAdapter = BookListAdapter(this, this, viewModel)
 
         binding.listBooks.apply {
             adapter = bookAdapter
@@ -103,10 +96,10 @@ class BrowseFragment : Fragment(), BookListAdapter.ClickListener {
                 false
             )
         }
-        populateBookList()
+        populateList()
     }
 
-    private fun populateBookList() {
+    override fun populateList() {
         viewModel.totalItems.observe(viewLifecycleOwner, {
             binding.totalItems.text = it.toString()
         })

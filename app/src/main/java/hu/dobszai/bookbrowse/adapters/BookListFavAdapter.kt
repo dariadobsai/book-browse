@@ -12,11 +12,11 @@ import hu.dobszai.bookbrowse.databinding.ListBooksBinding
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
 
-class BookListAdapter(val clickListener: ClickListener,
-                      lifecycleOwner: LifecycleOwner,
-                      val viewModel: BookViewModel,
+class BookListFavAdapter(val clickListener: ClickListener,
+                         lifecycleOwner: LifecycleOwner,
+                         val viewModel: BookViewModel,
 ) :
-    RecyclerView.Adapter<BookListAdapter.BooksViewHolder>() {
+    RecyclerView.Adapter<BookListFavAdapter.BooksViewHolder>() {
 
     private var list: List<Book> = mutableListOf()
 

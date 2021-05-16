@@ -1,17 +1,12 @@
 package hu.dobszai.bookbrowse.api
 
+import hu.dobszai.bookbrowse.utils.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
 class BookHttpClient : OkHttpClient() {
 
     companion object {
-
-        private fun buildLoggerInterceptor(): HttpLoggingInterceptor {
-            val interceptor = HttpLoggingInterceptor()
-            interceptor.level = HttpLoggingInterceptor.Level.BODY
-            return interceptor
-        }
 
         // NOTE:
 
@@ -32,7 +27,9 @@ class BookHttpClient : OkHttpClient() {
                     val url = original
                         .url
                         .newBuilder()
-                        .addQueryParameter("key", API_KEY)
+                        .addQueryParameter(KEY_PARAMETER_KEY, API_KEY)
+                        .addQueryParameter(MAX_RESULTS_PARAMETER_KEY, MAX_RESULTS_PARAMETER_VALUE)
+                        .addQueryParameter(LANG_PARAMETER_KEY, LANG_PARAMETER_VALUE)
                         .build()
                     val request = original
                         .newBuilder()
@@ -41,6 +38,12 @@ class BookHttpClient : OkHttpClient() {
                     chain.proceed(request)
                 }
                 .build()
+        }
+
+        private fun buildLoggerInterceptor(): HttpLoggingInterceptor {
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+            return interceptor
         }
     }
 }

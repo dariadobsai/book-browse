@@ -1,6 +1,7 @@
 package hu.dobszai.bookbrowse.models
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.JsonClass
@@ -9,12 +10,10 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 class Book(
     @PrimaryKey val id: String,
-    val volumeInfo : VolumeInfo,
-
-    @Transient // indicates that field should be ignored by JSON
-    @ColumnInfo(name = "favorite") var favorite: Boolean = false
+    @Embedded val volumeInfo : VolumeInfo,
 )
 
+// TODO
 class VolumeInfo(
     val title: String,
     val authors: List<String>?,
@@ -22,3 +21,13 @@ class VolumeInfo(
     //val smallThumbnail: String?,
     //val thumbnail: String?,
 )
+
+
+fun List<Book>.asDomainModel(): List<Book> {
+    return map {
+        Book(
+            id = it.id,
+            volumeInfo= it.volumeInfo,
+        )
+    }
+}

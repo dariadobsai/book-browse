@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">BookBrowse</string>
+    <string name="app_name">BooksBrowse</string>
 
     <!-- Fragments -->
-    <string name="nav_home">Book Browse</string>
+    <string name="nav_home">Books Browse</string>
     <string name="nav_favorites">Favorites</string>
 
     <!-- Menu -->

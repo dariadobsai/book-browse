@@ -1,4 +1,4 @@
-package hu.dobszai.bookbrowse.data
+package hu.dobszai.bookbrowse.database
 
 import android.content.Context
 import androidx.room.Database
@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import hu.dobszai.bookbrowse.models.Book
 
-@Database(entities = [Book::class], version = 1, exportSchema = false)
+@Database(entities = [Book::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class BookDatabase: RoomDatabase() {
 

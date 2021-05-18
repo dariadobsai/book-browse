@@ -1,30 +1,23 @@
 package hu.dobszai.bookbrowse.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.databinding.ListBooksBinding
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
 
-class BookListAdapter(val clickListener: ClickListener,
-                      lifecycleOwner: LifecycleOwner,
-                      val viewModel: BookViewModel,
+class BookListAdapter(
+    val clickListener: ClickListener,
+    val lifecycleOwner: LifecycleOwner,
+    val viewModel: BookViewModel,
 ) :
     RecyclerView.Adapter<BookListAdapter.BooksViewHolder>() {
 
     private var list: List<Book> = mutableListOf()
-
-    init {
-        viewModel.isFavorite.observe(lifecycleOwner) {
-            Log.d("FAVORITE", it.toString())
-        }
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -47,7 +40,7 @@ class BookListAdapter(val clickListener: ClickListener,
 
 
     interface ClickListener {
-        fun onBookClick(books: List<Book>, currentBook : Int)
+        fun onBookClick(books: List<Book>, currentBook: Int)
     }
 
     override fun getItemCount(): Int {
@@ -71,6 +64,7 @@ class BookListAdapter(val clickListener: ClickListener,
 
         init {
             binding.root.setOnClickListener(this)
+
         }
 
         fun bind(book: Book) {
@@ -81,6 +75,9 @@ class BookListAdapter(val clickListener: ClickListener,
                 btnAddFavorite.setOnClickListener {
                     viewModel.favoriteOrUnfavoriteBook(book)
                 }
+            }
+
+            viewModel.isFavorite.observe(lifecycleOwner) {
             }
         }
 

@@ -20,20 +20,21 @@ ext {
     navigation = [
             fragment: "androidx.navigation:navigation-fragment-ktx:$nav_version",
             ui: "androidx.navigation:navigation-ui-ktx:$nav_version",
-            test: "androidx.navigation:navigation-testing:$nav_version"
-
     ]
 
     // Retrofit and Moshi
     def retrofit_version = "2.9.0"
     def moshi_version = "1.12.0"
+    def gson_version = "2.8.6"
+    def interceptor_version = "4.2.1"
     network = [
             retrofit2: "com.squareup.retrofit2:retrofit:$retrofit_version",
             converter: "com.squareup.retrofit2:converter-moshi:$retrofit_version",
             moshi: "com.squareup.moshi:moshi:$moshi_version",
             kotlin: "com.squareup.moshi:moshi-kotlin:$moshi_version",
             adapter: "com.squareup.moshi:moshi-adapters:$moshi_version",
-
+            gson: "com.google.code.gson:gson:$gson_version",
+            interceptor: "com.squareup.okhttp3:logging-interceptor:$interceptor_version",
     ]
 
     // Coroutines
@@ -50,8 +51,25 @@ ext {
     database = [
             room: "androidx.room:room-runtime:$room_version",
             coroutines: "androidx.room:room-ktx:$room_version",
-            kapt: "androidx.room:room-compiler:$room_version",
-            test: "androidx.room:room-testing:$room_version",
+            compiler: "androidx.room:room-compiler:$room_version",
+    ]
+
+    // UI
+    def material_version = "1.3.0"
+    def cards_version = "2.3.4"
+    def constraint_version = "2.0.4"
+    def lottie_version = "3.5.0"
+    ui = [
+            material: "com.google.android.material:material:$material_version",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:$constraint_version",
+            cards: "com.github.yuyakaido:cardstackview:$cards_version",
+            lottie: "com.airbnb.android:lottie:$lottie_version",
+    ]
+
+    // Tests
+    testing = [
+            roomtest: "androidx.room:room-testing:$room_version",
+            navtest: "androidx.navigation:navigation-testing:$nav_version"
     ]
 }
 

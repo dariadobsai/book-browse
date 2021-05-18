@@ -14,8 +14,12 @@
     <!-- Text colors -->
     <color name="textPrimaryThemeLight">#363636</color>
     <color name="textSecondaryThemeLight">#7D7D7D</color>
-
     <color name="textPrimaryThemeDark">@color/white</color>
-    <color name="textSecondaryThemeDark">#9A9A9A</color>
+    <color name="textSecondaryThemeDark">#C4C4C4</color>
 
+
+
+    <!-- EditText colors -->
+    <color name="edtUnderlineDark">@color/white</color>
+    <color name="edtUnderlineLight">@color/dark</color>
 </resources>

@@ -12,8 +12,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:minHeight="50dp" />
+            android:layout_height="@dimen/toolbar_small_height"
+            android:minHeight="@dimen/toolbar_small_height" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toStartOf="@+id/btn_rewind"
-                    android:src="@drawable/ic_favorites"
+                    android:src="@drawable/ic_favorite_filled"
                     app:backgroundTint="@android:color/white"
                     app:fabSize="auto"
                     app:rippleColor="#22ED7563"/>
@@ -49,7 +49,7 @@
                     android:layout_marginRight="32dp"
                     android:layout_marginEnd="32dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_favorites"
+                    android:src="@drawable/ic_favorite_filled"
                     app:backgroundTint="@android:color/white"
                     app:fabSize="mini"
                     app:rippleColor="#225BC9FA"/>
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/btn_rewind"
-                    android:src="@drawable/ic_favorites"
+                    android:src="@drawable/ic_favorite_filled"
                     app:backgroundTint="@android:color/white"
                     app:fabSize="auto"
                     app:rippleColor="#226FE2B3"/>

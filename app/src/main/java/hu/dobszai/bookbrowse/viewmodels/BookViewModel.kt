@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import hu.dobszai.bookbrowse.base.BaseViewModel
-import hu.dobszai.bookbrowse.data.BookDatabase.Companion.getDatabaseInstance
+import hu.dobszai.bookbrowse.database.BookDatabase.Companion.getDatabaseInstance
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.repo.BookRepository
 import kotlinx.coroutines.launch
@@ -44,5 +44,4 @@ class BookViewModel(app: Application) : BaseViewModel(app) {
             _isFavorite.value = isFav
         }
     }
-
 }

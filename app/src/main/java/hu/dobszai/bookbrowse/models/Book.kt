@@ -13,24 +13,30 @@ import kotlinx.android.parcel.RawValue
 @JsonClass(generateAdapter = true)
 data class Book(
     @PrimaryKey val id: String,
-    @Embedded val volumeInfo  : @RawValue VolumeInfo,
+    @Embedded val volumeInfo: @RawValue VolumeInfo,
 ) : Parcelable
 
-// TOdo
 @Parcelize
 data class VolumeInfo(
     val title: String,
     val authors: List<String>?,
     val description: String?,
-    //val smallThumbnail: String?,
-    //val thumbnail: String?,
-): Parcelable
+    val previewLink: String,
+    val publishedDate: String,
+    val imageLinks: @RawValue ImageLinks?,
+) : Parcelable
+
+@Parcelize
+data class ImageLinks(
+    val smallThumbnail: String?,
+    val thumbnail: String?
+) : Parcelable
 
 fun List<Book>.asDomainModel(): List<Book> {
     return map {
         Book(
             id = it.id,
-            volumeInfo= it.volumeInfo,
+            volumeInfo = it.volumeInfo,
         )
     }
 }

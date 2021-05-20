@@ -59,11 +59,15 @@ ext {
     def cards_version = "2.3.4"
     def constraint_version = "2.0.4"
     def lottie_version = "3.5.0"
+    def picasso_version = "2.71828"
+    def rounded_img_version = "2.3.0"
     ui = [
             material: "com.google.android.material:material:$material_version",
             constraintlayout: "androidx.constraintlayout:constraintlayout:$constraint_version",
             cards: "com.github.yuyakaido:cardstackview:$cards_version",
             lottie: "com.airbnb.android:lottie:$lottie_version",
+            picasso: "com.squareup.picasso:picasso:$picasso_version",
+            roundedImg: "com.makeramen:roundedimageview:$rounded_img_version"
     ]
 
     // Tests

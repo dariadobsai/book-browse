@@ -18,11 +18,11 @@ data class Book(
 
 @Parcelize
 data class VolumeInfo(
-    val title: String,
+    val title: String?,
     val authors: List<String>?,
     val description: String?,
-    val previewLink: String,
-    val publishedDate: String,
+    val previewLink: String?,
+    val publishedDate: String?,
     val imageLinks: @RawValue ImageLinks?,
 ) : Parcelable
 

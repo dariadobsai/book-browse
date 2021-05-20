@@ -2,6 +2,7 @@
 <resources>
     <color name="accentBlue">#AECDFE</color>
     <color name="accentGreen">#7CFEB8</color>
+    <color name="accentGreen_45_opacity">#737CFEB8</color>
 
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>

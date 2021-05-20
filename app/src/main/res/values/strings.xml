@@ -8,6 +8,9 @@
     <!-- Menu -->
     <string name="menu_favorites">Favorites</string>
 
+    <!-- Book info -->
+    <string name="total_items">Found %s items</string>
+
     <!-- Error messages -->
     <string name="book_title_required">Please enter a book title to the search field</string>
     <string name="edt_hint">e.g.:Harry Potter</string>

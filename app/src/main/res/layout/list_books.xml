@@ -16,31 +16,21 @@
 
             <ImageButton
                 android:id="@+id/btn_add_favorite"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_8x2dp"
                 android:layout_marginTop="@dimen/margin_8dp"
-                app:favorite="@{bookViewModel}"
+                android:layout_marginEnd="@dimen/margin_12dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/desc_add_to_favs"
                 android:src="@drawable/ic_favorite_outlined"
+                app:favorite="@{bookViewModel}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/desc_add_to_favs" />
-
-            <ImageView
-                android:id="@+id/book_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_placeholder"
-                android:contentDescription="@string/desc_book_cover" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_12dp"
                 android:layout_marginTop="@dimen/margin_8x2dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@id/btn_add_favorite"
@@ -52,7 +42,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:ellipsize="end"
                     android:fontFamily="@font/livvic_bold"
+                    android:gravity="center"
                     android:maxLines="2"
                     android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/text_18sp"
@@ -64,8 +56,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:ellipsize="end"
                     android:fontFamily="@font/livvic_regular"
-                    android:maxLines="2"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/text_18sp"
                     app:authors="@{bookModel}"
@@ -74,19 +68,31 @@
 
             <TextView
                 android:id="@+id/book_url"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_8x2dp"
                 android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
                 android:linksClickable="true"
-                android:textColor="@color/accentBlue"
+                android:textColorLink="@color/accentBlue"
                 android:textSize="@dimen/text_16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btn_add_favorite"
                 app:layout_constraintStart_toEndOf="@id/book_img"
                 app:url="@{bookModel}"
-                tools:text="link to the book" />
+                tools:text="view in browser" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/book_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12dp"
+                android:contentDescription="@string/desc_book_cover"
+                android:src="@drawable/ic_placeholder"
+                app:cover="@{bookModel}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

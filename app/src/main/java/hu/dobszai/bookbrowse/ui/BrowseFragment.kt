@@ -115,12 +115,18 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
     }
 
     override fun populateList() {
-        _viewModel.totalItems.observe(viewLifecycleOwner, {
-            binding.totalItems.text = it.toString()
-        })
-        _viewModel.books.observe(viewLifecycleOwner, {
-            bookAdapter.setBookList(it)
-        })
+        _viewModel.apply {
+            totalItems.observe(viewLifecycleOwner, {
+                binding.totalItems.text = String.format(
+                    resources.getString(R.string.total_items),
+                    it.toString(),
+                )
+            })
+
+            books.observe(viewLifecycleOwner, {
+                bookAdapter.setBookList(it)
+            })
+        }
     }
 
     override fun onBookClick(books: List<Book>, currentBook: Int) {

@@ -19,18 +19,12 @@ import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.utils.appBarConfiguration
 import hu.dobszai.bookbrowse.utils.disableAppBarTitle
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
-import kotlinx.android.synthetic.main.toolbar.view.*
 
 class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
 
     override val _viewModel: BookViewModel by activityViewModels()
     private lateinit var binding: FragmentBrowseBinding
     private lateinit var bookAdapter: BookListAdapter
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +39,7 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
             disableAppBarTitle()
         }
 
-        binding.inToolbar.toolbar.custom_title.text = getString(R.string.nav_home)
+        binding.inToolbar.customTitle.text = getString(R.string.nav_home)
 
         binding.apply {
             lifecycleOwner = this@BrowseFragment
@@ -60,6 +54,8 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setHasOptionsMenu(true)
 
         NavigationUI.setupWithNavController(
             binding.inToolbar.toolbar,

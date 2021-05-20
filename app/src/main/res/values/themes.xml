@@ -3,6 +3,7 @@
         <!-- Primary colors -->
         <item name="colorPrimary">@color/accentBlue</item>
         <item name="colorOnPrimary">@color/light</item>
+        <item name="android:windowBackground">@color/light</item>
         <item name="android:textColorPrimary">@color/textPrimaryThemeLight</item>
 
         <!-- Secondary colors -->

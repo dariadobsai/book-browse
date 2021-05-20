@@ -13,7 +13,6 @@ import hu.dobszai.bookbrowse.base.BaseFragment
 import hu.dobszai.bookbrowse.databinding.FragmentFavoritesBinding
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
-import kotlinx.android.synthetic.main.toolbar.view.*
 
 class FavoritesFragment : BaseFragment(), BookListFavAdapter.ClickListener {
 
@@ -31,7 +30,7 @@ class FavoritesFragment : BaseFragment(), BookListFavAdapter.ClickListener {
             lifecycleOwner = this@FavoritesFragment
             booksViewModel = _viewModel
 
-            inToolbar.toolbar.custom_title.text = getString(R.string.nav_favorites)
+            inToolbar.customTitle.text = getString(R.string.nav_favorites)
         }
 
         setUpRecyclerView()

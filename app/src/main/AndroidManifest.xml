@@ -4,9 +4,6 @@
     package="hu.dobszai.bookbrowse"
     tools:ignore="LockedOrientationActivity">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BookBrowse">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.BookBrowse"
+        android:windowSoftInputMode="stateHidden|adjustNothing">
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -25,4 +24,8 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

@@ -1,4 +1,4 @@
-package hu.dobszai.bookbrowse.data
+package hu.dobszai.bookbrowse.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

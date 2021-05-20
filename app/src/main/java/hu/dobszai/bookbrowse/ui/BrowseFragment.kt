@@ -1,7 +1,9 @@
 package hu.dobszai.bookbrowse.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
@@ -17,6 +19,7 @@ import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.utils.appBarConfiguration
 import hu.dobszai.bookbrowse.utils.disableAppBarTitle
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
+import kotlinx.android.synthetic.main.toolbar.view.*
 
 class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
 
@@ -38,9 +41,11 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
 
         val activity = activity as AppCompatActivity
         activity.apply {
-            setSupportActionBar(binding.toolbar)
+            setSupportActionBar(binding.inToolbar.toolbar)
             disableAppBarTitle()
         }
+
+        binding.inToolbar.toolbar.custom_title.text = getString(R.string.nav_home)
 
         binding.apply {
             lifecycleOwner = this@BrowseFragment
@@ -57,7 +62,7 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         NavigationUI.setupWithNavController(
-            binding.toolbar,
+            binding.inToolbar.toolbar,
             findNavController(),
             appBarConfiguration
         )
@@ -77,18 +82,22 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
                 )
             )
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item)
 
     }
 
     private fun searchBook() {
+        val inputField = binding.searchView
+
         binding.btnSearch.setOnClickListener {
-            if (binding.searchView.text.toString().isNotEmpty()) {
-                _viewModel.findBook(binding.searchView.text.toString())
+            if (inputField.text.toString().isNotEmpty()) {
+                _viewModel.findBook(inputField.text.toString())
+                closeKeyboard()
             } else {
                 Toast.makeText(context, R.string.book_title_required, Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     override fun setUpRecyclerView() {
@@ -106,12 +115,18 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
     }
 
     override fun populateList() {
-        _viewModel.totalItems.observe(viewLifecycleOwner, {
-            binding.totalItems.text = it.toString()
-        })
-        _viewModel.books.observe(viewLifecycleOwner, {
-            bookAdapter.setBookList(it)
-        })
+        _viewModel.apply {
+            totalItems.observe(viewLifecycleOwner, {
+                binding.totalItems.text = String.format(
+                    resources.getString(R.string.total_items),
+                    it.toString(),
+                )
+            })
+
+            books.observe(viewLifecycleOwner, {
+                bookAdapter.setBookList(it)
+            })
+        }
     }
 
     override fun onBookClick(books: List<Book>, currentBook: Int) {
@@ -123,5 +138,13 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
                 )
             )
         )
+    }
+
+    private fun closeKeyboard() {
+        val view = activity?.currentFocus
+        if (view != null) {
+            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }

@@ -3,7 +3,7 @@ package hu.dobszai.bookbrowse.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import hu.dobszai.bookbrowse.api.BooksApi
-import hu.dobszai.bookbrowse.data.BookDatabase
+import hu.dobszai.bookbrowse.database.BookDatabase
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.models.BookResponse
 import hu.dobszai.bookbrowse.models.asDomainModel

@@ -13,79 +13,92 @@
             android:id="@+id/search_area"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8x2dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
+            app:layout_constraintTop_toBottomOf="@id/in_toolbar">
 
-            <Button
-                android:id="@+id/btn_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:width="0dp"
-                android:text="Search" />
-
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/search_view"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_height="@dimen/edt_height"
+                android:layout_marginEnd="@dimen/margin_8dp"
                 android:layout_weight="10"
-                android:background="#55F5F5F5"
-                android:elevation="1dp"
-                android:hint="Search here"
+                android:gravity="start"
+                android:hint="@string/edt_hint"
                 android:importantForAutofill="no"
                 android:inputType="text"
+                android:textColor="?android:textColorSecondary"
+                android:textSize="@dimen/text_16sp"
                 tools:ignore="LabelFor" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_search"
+                android:layout_width="@dimen/btn_search_width"
+                android:layout_height="@dimen/btn_search_height"
+                android:layout_weight="1"
+                android:width="0dp"
+                android:background="@drawable/btn_search"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/btn_search"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_18sp"
+                android:imeOptions="actionDone"
+            android:theme="@style/Theme.BookBrowse.EditText" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/total_items"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/livvic_regular"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="20 results"
-            app:layout_constraintTop_toBottomOf="@id/search_area" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:minHeight="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/custom_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/livvic_bold"
-                android:text="@string/nav_home"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_books"
+        <LinearLayout
+            android:id="@+id/list_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:clipToPadding="false"
+            android:layout_marginTop="@dimen/margin_16x2dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/total_items"
-            tools:listitem="@layout/list_books" />
+            app:layout_constraintTop_toBottomOf="@id/search_area">
+
+            <TextView
+                android:id="@+id/total_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8x2dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="@dimen/text_18sp"
+                tools:text="80 results" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8x2dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/total_items"
+                tools:listitem="@layout/list_books" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/in_empty_list"
+            layout="@layout/empty_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:visibilityCondition="@{booksViewModel.books.empty}"
+            tools:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_area" />
+
+        <include
+            android:id="@+id/in_toolbar"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>

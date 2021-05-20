@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.DecelerateInterpolator
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.yuyakaido.android.cardstackview.*
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import hu.dobszai.bookbrowse.adapters.DetailListAdapter
 import hu.dobszai.bookbrowse.databinding.FragmentDetailsBinding
 import hu.dobszai.bookbrowse.models.Book
@@ -54,39 +51,5 @@ class DetailsFragment : Fragment() {
 
         detailsAdapter.setBookList(argBookList.toList())
         binding.cardStackView.scrollToPosition(argBookPosition)
-
-        setupButton(manager)
-    }
-
-    private fun setupButton(manager: CardStackLayoutManager) {
-        binding.btnSkip.setOnClickListener {
-            val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Left)
-                .setDuration(Duration.Slow.duration)
-                .setInterpolator(AccelerateInterpolator())
-                .build()
-            manager.setSwipeAnimationSetting(setting)
-            binding.cardStackView.swipe()
-        }
-
-        binding.btnRewind.setOnClickListener {
-            val setting = RewindAnimationSetting.Builder()
-                .setDirection(Direction.Bottom)
-                .setDuration(Duration.Slow.duration)
-                .setInterpolator(DecelerateInterpolator())
-                .build()
-            manager.setRewindAnimationSetting(setting)
-            binding.cardStackView.scrollToPosition(0)
-        }
-
-        binding.btnLike.setOnClickListener {
-            val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Right)
-                .setDuration(Duration.Slow.duration)
-                .setInterpolator(AccelerateInterpolator())
-                .build()
-            manager.setSwipeAnimationSetting(setting)
-            binding.cardStackView.rewind()
-        }
     }
 }

@@ -5,7 +5,10 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="@dimen/card_book_list_size"
+        android:layout_margin="@dimen/margin_8x2dp"
+        android:elevation="@dimen/elevation"
+        app:cardCornerRadius="@dimen/corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -13,36 +16,83 @@
 
             <ImageButton
                 android:id="@+id/btn_add_favorite"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_favorites" />
-
-            <TextView
-                android:id="@+id/item_election_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_12dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/desc_add_to_favs"
+                android:src="@drawable/ic_favorite_outlined"
+                app:favorite="@{bookViewModel}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_12dp"
+                android:layout_marginTop="@dimen/margin_8x2dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@id/btn_add_favorite"
+                app:layout_constraintStart_toEndOf="@id/book_img"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/book_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/livvic_bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="@dimen/text_18sp"
+                    app:title="@{bookModel}"
+                    tools:text="Title" />
+
+                <TextView
+                    android:id="@+id/book_authors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/livvic_regular"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="@dimen/text_18sp"
+                    app:authors="@{bookModel}"
+                    tools:text="Author" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/book_url"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_8x2dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:linksClickable="true"
+                android:textColorLink="@color/accentBlue"
+                android:textSize="@dimen/text_16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/item_election_time"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintEnd_toStartOf="@id/btn_add_favorite"
+                app:layout_constraintStart_toEndOf="@id/book_img"
+                app:url="@{bookModel}"
+                tools:text="view in browser" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/book_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12dp"
+                android:contentDescription="@string/desc_book_cover"
+                android:src="@drawable/ic_placeholder"
+                app:cover="@{bookModel}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:title="@{bookModel}"
-                tools:text="Title" />
-
-            <TextView
-                android:id="@+id/item_election_time"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:authors="@{bookModel}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_election_name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:text="Author" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -52,6 +102,7 @@
         <variable
             name="bookModel"
             type="hu.dobszai.bookbrowse.models.Book" />
+
         <variable
             name="bookViewModel"
             type="hu.dobszai.bookbrowse.viewmodels.BookViewModel" />

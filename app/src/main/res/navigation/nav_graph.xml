@@ -29,14 +29,15 @@
         <argument
             android:name="arg_book_list"
             app:argType="hu.dobszai.bookbrowse.models.Book[]" />
-        <action
-            android:id="@+id/action_detailsFragment_to_favoritesFragment"
-            app:destination="@id/favoritesFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="hu.dobszai.bookbrowse.ui.FavoritesFragment"
         android:label=""
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 </navigation>

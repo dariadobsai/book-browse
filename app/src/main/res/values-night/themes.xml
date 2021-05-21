@@ -1,11 +1,26 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.BookBrowse" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- App background -->
+        <item name="android:windowBackground">@color/dark</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">@color/dark</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">@color/dark</item>
+
+        <!-- Navigation bar -->
+        <item name="android:navigationBarColor">@color/dark</item>
+
         <!-- Primary colors -->
-        <item name="colorPrimary">@color/accentBlue</item>
+        <item name="colorPrimary">@color/dark</item>
         <item name="colorOnPrimary">@color/dark</item>
+        <item name="colorSurface">@color/card_view_dark</item>
+
+        <!-- Text primary colors -->
         <item name="android:textColorPrimary">@color/textPrimaryThemeDark</item>
 
-        <!-- Secondary colors -->
+        <!-- Text secondary colors -->
         <item name="android:textColorSecondary">@color/textSecondaryThemeDark</item>
     </style>
 

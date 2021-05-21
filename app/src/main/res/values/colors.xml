@@ -3,12 +3,10 @@
     <color name="accentBlue">#AECDFE</color>
     <color name="accentGreen">#7CFEB8</color>
     <color name="accentGreen_45_opacity">#737CFEB8</color>
-
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="dislike_45_opacity">#73FBFBFB</color>
 
     <color name="dark">#353535</color>
+    <color name="card_view_dark">#464646</color>
     <color name="light">#FBFBFB</color>
     <color name="white">#FFFFFFFF</color>
 
@@ -17,8 +15,6 @@
     <color name="textSecondaryThemeLight">#7D7D7D</color>
     <color name="textPrimaryThemeDark">@color/white</color>
     <color name="textSecondaryThemeDark">#C4C4C4</color>
-
-
 
     <!-- EditText colors -->
     <color name="edtUnderlineDark">@color/white</color>

@@ -19,6 +19,7 @@
 
     <!-- Content descriptions  -->
     <string name="desc_add_to_favs">Add book to favorites</string>
+    <string name="desc_not_interested">Not interested</string>
     <string name="desc_book_cover">Book cover</string>
 </resources>
 

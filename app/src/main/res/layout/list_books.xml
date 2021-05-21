@@ -8,24 +8,12 @@
         android:layout_height="@dimen/card_book_list_size"
         android:layout_margin="@dimen/margin_8x2dp"
         android:elevation="@dimen/elevation"
+        android:background="?colorSurface"
         app:cardCornerRadius="@dimen/corner_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/btn_add_favorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_8dp"
-                android:layout_marginEnd="@dimen/margin_12dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/desc_add_to_favs"
-                android:src="@drawable/ic_favorite_outlined"
-                app:favorite="@{bookViewModel}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -67,6 +55,22 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/btn_add_favorite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_12dp"
+                android:fontFamily="@font/livvic_bold"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="@dimen/text_18sp"
+                app:date="@{bookModel}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1990" />
+
+            <TextView
                 android:id="@+id/book_url"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -84,15 +88,15 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/book_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginStart="@dimen/margin_12dp"
                 android:contentDescription="@string/desc_book_cover"
                 android:src="@drawable/ic_placeholder"
-                app:cover="@{bookModel}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:thumbnail="@{bookModel}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

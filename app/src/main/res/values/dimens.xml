@@ -2,6 +2,7 @@
 <resources>
     <!-- App -->
     <dimen name="elevation">2dp</dimen>
+    <dimen name="elevation_2x5">10dp</dimen>
     <dimen name="corner_radius">20dp</dimen>
 
     <!-- Text sizes -->

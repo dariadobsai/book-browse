@@ -20,16 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_50dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:gravity="center"
             android:padding="@dimen/padding_8dp"
             android:text="@string/empty_list_txt"
-            android:textColor="?android:textColorSecondary"
-            android:textSize="@dimen/text_18sp" />
+            style="@style/txt_empty_list_style" />
     </LinearLayout>
 
     <data>
-
         <import type="android.view.View" />
 
         <variable

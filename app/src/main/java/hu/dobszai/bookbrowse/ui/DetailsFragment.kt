@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.example.android.politicalpreparedness.base.NavigationCommand
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.StackFrom
 import hu.dobszai.bookbrowse.adapters.DetailListAdapter
 import hu.dobszai.bookbrowse.base.BaseFragment
+import hu.dobszai.bookbrowse.base.NavigationCommand
 import hu.dobszai.bookbrowse.databinding.FragmentDetailsBinding
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.viewmodels.DetailViewModel
@@ -30,7 +30,7 @@ class DetailsFragment : BaseFragment(), CardStackListener {
 
     override val _viewModel: DetailViewModel by inject()
 
-    private val detailsAdapter by lazy() { DetailListAdapter() }
+    private val detailsAdapter by lazy { DetailListAdapter() }
     private lateinit var manager: CardStackLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {

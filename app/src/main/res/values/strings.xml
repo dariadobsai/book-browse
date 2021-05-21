@@ -12,10 +12,13 @@
     <string name="total_items">Found %s items</string>
 
     <!-- Error messages -->
-    <string name="book_title_required">Please enter a book title to the search field</string>
+    <string name="book_title_required">Please enter something to the search field</string>
     <string name="edt_hint">e.g.:Harry Potter</string>
     <string name="btn_search">Search</string>
+
+    <!-- Empty lists -->
     <string name="empty_list_txt">No books to display yet.\nStart by searching in the input field.</string>
+    <string name="favorites_empty_list">No favorite books yet</string>
 
     <!-- Content descriptions  -->
     <string name="desc_add_to_favs">Add book to favorites</string>

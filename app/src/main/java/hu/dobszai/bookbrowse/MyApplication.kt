@@ -1,7 +1,6 @@
 package hu.dobszai.bookbrowse
 
 import android.app.Application
-import hu.dobszai.bookbrowse.base.BaseViewModel
 import hu.dobszai.bookbrowse.viewmodels.DetailViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel

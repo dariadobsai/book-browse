@@ -1,4 +1,4 @@
-package com.example.android.politicalpreparedness.base
+package hu.dobszai.bookbrowse.base
 
 import androidx.navigation.NavDirections
 

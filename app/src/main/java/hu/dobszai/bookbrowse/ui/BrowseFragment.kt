@@ -1,22 +1,21 @@
 package hu.dobszai.bookbrowse.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android.politicalpreparedness.base.NavigationCommand
 import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.adapters.BookListAdapter
 import hu.dobszai.bookbrowse.base.BaseFragment
+import hu.dobszai.bookbrowse.base.NavigationCommand
 import hu.dobszai.bookbrowse.databinding.FragmentBrowseBinding
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.utils.appBarConfiguration
+import hu.dobszai.bookbrowse.utils.closeKeyboard
 import hu.dobszai.bookbrowse.utils.disableAppBarTitle
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
 
@@ -88,7 +87,7 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
         binding.btnSearch.setOnClickListener {
             if (inputField.text.toString().isNotEmpty()) {
                 _viewModel.findBook(inputField.text.toString())
-                closeKeyboard()
+                closeKeyboard(activity as AppCompatActivity)
             } else {
                 Toast.makeText(context, R.string.book_title_required, Toast.LENGTH_SHORT).show()
             }
@@ -134,13 +133,5 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
                 )
             )
         )
-    }
-
-    private fun closeKeyboard() {
-        val view = activity?.currentFocus
-        if (view != null) {
-            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
-        }
     }
 }

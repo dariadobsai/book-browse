@@ -1,13 +1,11 @@
 package hu.dobszai.bookbrowse.utils
 
-import android.app.Activity
-import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import hu.dobszai.bookbrowse.R
-
 
 val appBarConfiguration = AppBarConfiguration(
     setOf(
@@ -20,6 +18,24 @@ val appBarConfiguration = AppBarConfiguration(
 fun AppCompatActivity.disableAppBarTitle() =
     this.supportActionBar?.setDisplayShowTitleEnabled(false)
 
+fun closeKeyboard(activity: AppCompatActivity?) {
+    val view = activity?.currentFocus
+    if (view != null) {
+        val imm = activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+}
 
-fun Context.displayToast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_LONG)
+/**
+ * Hide keyboard on application start and
+ * prevent it from pushing the content.
+ *
+ * @param activity
+ */
+fun hideKeyboard(activity: AppCompatActivity) {
+    activity.window.apply {
+        setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+        setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+    }
+}
 

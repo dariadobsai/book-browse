@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Text styles -->
+    <style name="txt_title_style">
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">@font/livvic_bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+    <style name="txt_title_style.authors">
+        <item name="android:fontFamily">@font/livvic_regular</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="txt_url_style">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:linksClickable">true</item>
+        <item name="android:textColorLink">@color/accentBlue</item>
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="txt_title_small_style">
+        <item name="android:fontFamily">@font/livvic_bold</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/text_16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="txt_title_small_style.authors">
+        <item name="android:fontFamily">@font/livvic_regular</item>
+    </style>
+
+    <style name="txt_desc_style">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/text_14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="txt_empty_list_style">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+    <style name="txt_date_style">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:fontFamily">@font/livvic_regular</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+    <!-- Cards styles -->
+    <style name="card_view_style">
+        <item name="android:background">?colorSurface</item>
+        <item name="android:elevation">@dimen/elevation</item>
+    </style>
+
+    <!-- Buttons styles -->
+    <style name="btn_search_style">
+        <item name="android:background">@drawable/btn_search</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_18sp</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:theme">@style/Theme.BookBrowse.EditText</item>
+    </style>
+
+    <!-- EditText styles -->
+    <style name="edt_style">
+        <item name="android:gravity">start</item>
+        <item name="android:importantForAutofill" tools:targetApi="o">no</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+</resources>

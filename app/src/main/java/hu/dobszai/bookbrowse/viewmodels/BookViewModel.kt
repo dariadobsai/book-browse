@@ -1,7 +1,6 @@
 package hu.dobszai.bookbrowse.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import hu.dobszai.bookbrowse.base.BaseViewModel
@@ -9,8 +8,9 @@ import hu.dobszai.bookbrowse.database.BookDatabase.Companion.getDatabaseInstance
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.repo.BookRepository
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
-class BookViewModel(app: Application) : BaseViewModel(app) {
+open class BookViewModel(app: Application) : BaseViewModel(app) {
 
     private val database = getDatabaseInstance(app)
     private val bookRepository = BookRepository(database)
@@ -21,9 +21,6 @@ class BookViewModel(app: Application) : BaseViewModel(app) {
     private val _totalItems = MutableLiveData<Int>()
     val totalItems: LiveData<Int> get() = _totalItems
 
-    private val _isFavorite = MutableLiveData<Boolean>()
-    val isFavorite: LiveData<Boolean> get() = _isFavorite
-
     val booksFav: LiveData<List<Book>> = bookRepository.favoriteBooks
 
     fun findBook(searchInput: String) {
@@ -33,15 +30,14 @@ class BookViewModel(app: Application) : BaseViewModel(app) {
                 _books.value = books.items
                 _totalItems.value = books.totalItems
             } catch (t: Throwable) {
-                Log.d("TAG", t.toString())
+                Timber.d(t.toString())
             }
         }
     }
 
-    fun favoriteOrUnfavoriteBook(book: Book) {
+    fun favoriteOrUnfavoriteBook(book: Book, isFavorite : Boolean) {
         viewModelScope.launch {
-            val isFav = bookRepository.markBoosAsFavorite(book)
-            _isFavorite.value = isFav
+           bookRepository.markBoosAsFavorite(book, isFavorite)
         }
     }
 }

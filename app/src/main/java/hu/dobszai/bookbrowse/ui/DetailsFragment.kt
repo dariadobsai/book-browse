@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.android.politicalpreparedness.base.NavigationCommand
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
+import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.StackFrom
 import hu.dobszai.bookbrowse.adapters.DetailListAdapter
@@ -18,10 +17,11 @@ import hu.dobszai.bookbrowse.databinding.FragmentDetailsBinding
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.viewmodels.DetailViewModel
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 import kotlin.properties.Delegates
 
 
-class DetailsFragment : BaseFragment() {
+class DetailsFragment : BaseFragment(), CardStackListener {
 
     private lateinit var binding: FragmentDetailsBinding
 
@@ -30,7 +30,13 @@ class DetailsFragment : BaseFragment() {
 
     override val _viewModel: DetailViewModel by inject()
 
-    private lateinit var adapter: DetailListAdapter
+    private val detailsAdapter by lazy() { DetailListAdapter() }
+    private lateinit var manager: CardStackLayoutManager
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        manager = CardStackLayoutManager(activity?.applicationContext, this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +47,9 @@ class DetailsFragment : BaseFragment() {
         argBookPosition = DetailsFragmentArgs.fromBundle(requireArguments()).argBookPosition
         argBookList = DetailsFragmentArgs.fromBundle(requireArguments()).argBookList
 
+
         setUpRecyclerView()
+        populateList()
 
         return binding.root
     }
@@ -53,38 +61,63 @@ class DetailsFragment : BaseFragment() {
     }
 
     override fun setUpRecyclerView() {
-        val manager = CardStackLayoutManager(context)
+        binding.cardStackView.apply {
+            layoutManager = manager
+            adapter = detailsAdapter
+        }
+
         manager.apply {
             setStackFrom(StackFrom.None)
             setDirections(Direction.HORIZONTAL)
         }
-
-        adapter = DetailListAdapter()
-
-        binding.cardStackView.apply {
-            layoutManager = manager
-            adapter = adapter
-        }
     }
 
     override fun populateList() {
-        adapter.setBookList(argBookList.toList())
+        detailsAdapter.setBookList(argBookList.toList())
         binding.cardStackView.apply {
             scrollToPosition(argBookPosition)
+
         }
     }
 
-    /* binding.cardStackView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-          override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+    override fun onCardSwiped(direction: Direction?) {
+        when (direction) {
+            Direction.Right -> _viewModel.favoriteOrUnfavoriteBook(
+                argBookList[manager.topPosition - 1],
+                true
+            )
+            else -> _viewModel.favoriteOrUnfavoriteBook(
+                argBookList[manager.topPosition - 1],
+                false
+            )
+        }
 
-              recyclerView.findViewHolderForAdapterPosition()
+        if (manager.topPosition == detailsAdapter.itemCount) {
+            _viewModel.navigationCommand.postValue(
+                NavigationCommand.Back
+            )
+        }
+    }
 
-              if (argBookList.toList().size <= newState + 1) {
-                  _viewModel.navigationCommand.postValue(
-                      NavigationCommand.Back
-                  )
-              }
-          }
-      })*/
+    override fun onCardRewound() {
+        Timber.d("onCardRewound")
+    }
+
+    override fun onCardCanceled() {
+        Timber.d("onCardCanceled")
+    }
+
+    override fun onCardAppeared(view: View?, position: Int) {
+        Timber.d("onCardAppeared")
+    }
+
+    override fun onCardDisappeared(view: View?, position: Int) {
+        Timber.d("onCardDisappeared")
+    }
+
+
+    override fun onCardDragging(direction: Direction, ratio: Float) {
+        Timber.d("onCardDragging")
+    }
 
 }

@@ -25,24 +25,13 @@ class BookRepository(private val database: BookDatabase) {
         }
     }
 
-    suspend fun markBoosAsFavorite(book: Book): Boolean {
-        var isFavorite: Boolean
-
+    suspend fun markBoosAsFavorite(book: Book, markFavorite: Boolean): Boolean {
         withContext(Dispatchers.IO) {
-
             database.bookDao.also {
-                isFavorite = it.isBookFavorite(book.id)
-                if (isFavorite) {
-                    it.deleteBook(book.id)
-
-                } else {
-                    it.insertFavoriteBook(book)
-
-                }
+                if (markFavorite) it.insertFavoriteBook(book)
+                else it.deleteBook(book.id)
             }
-
         }
-
-        return isFavorite
+        return markFavorite
     }
 }

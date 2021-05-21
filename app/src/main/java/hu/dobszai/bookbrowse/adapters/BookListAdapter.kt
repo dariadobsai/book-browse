@@ -11,10 +11,7 @@ import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
 
 class BookListAdapter(
-    val clickListener: ClickListener,
-    val lifecycleOwner: LifecycleOwner,
-    val viewModel: BookViewModel,
-) :
+    val clickListener: ClickListener, ) :
     RecyclerView.Adapter<BookListAdapter.BooksViewHolder>() {
 
     private var list: List<Book> = mutableListOf()
@@ -40,7 +37,7 @@ class BookListAdapter(
 
 
     interface ClickListener {
-        fun onBookClick(books: List<Book>, currentBook: Int)
+        fun onBookClick(books: List<Book>, bookPosition: Int)
     }
 
     override fun getItemCount(): Int {
@@ -64,23 +61,14 @@ class BookListAdapter(
 
         init {
             binding.root.setOnClickListener(this)
-
         }
 
         fun bind(book: Book) {
             with(binding) {
-                bookViewModel = viewModel
                 bookModel = book
                 executePendingBindings()
-                btnAddFavorite.setOnClickListener {
-                    viewModel.favoriteOrUnfavoriteBook(book)
-                }
-            }
-
-            viewModel.isFavorite.observe(lifecycleOwner) {
             }
         }
-
 
         override fun onClick(v: View?) {
             clickListener.onBookClick(list, adapterPosition)

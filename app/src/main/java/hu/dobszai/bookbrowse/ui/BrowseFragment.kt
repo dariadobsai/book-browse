@@ -97,7 +97,7 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
     }
 
     override fun setUpRecyclerView() {
-        bookAdapter = BookListAdapter(this, this, _viewModel)
+        bookAdapter = BookListAdapter(this)
 
         binding.listBooks.apply {
             adapter = bookAdapter
@@ -125,11 +125,11 @@ class BrowseFragment : BaseFragment(), BookListAdapter.ClickListener {
         }
     }
 
-    override fun onBookClick(books: List<Book>, currentBook: Int) {
+    override fun onBookClick(books: List<Book>, bookPosition: Int) {
         _viewModel.navigationCommand.postValue(
             NavigationCommand.To(
                 BrowseFragmentDirections.actionBrowseFragmentToDetailsFragment(
-                    currentBook,
+                    bookPosition,
                     books.toTypedArray()
                 )
             )

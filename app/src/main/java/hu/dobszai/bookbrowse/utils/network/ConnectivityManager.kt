@@ -12,7 +12,7 @@ class ConnectivityManager
 constructor(val application: Application) {
     private val connectionLiveData = ConnectionLiveData(application)
 
-    val isNetworkAvailable = MutableLiveData(false)
+    val isNetworkAvailable = MutableLiveData(true)
 
     fun registerConnectionObserver(lifecycleOwner: LifecycleOwner) {
         connectionLiveData.observe(lifecycleOwner, { isConnected ->

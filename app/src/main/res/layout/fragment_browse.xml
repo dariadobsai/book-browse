@@ -24,6 +24,7 @@
                 android:id="@+id/search_view"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edt_height"
+                android:maxLength="@integer/maximum_input_length"
                 android:layout_marginEnd="@dimen/margin_4x2dp"
                 android:layout_weight="10"
                 android:hint="@string/edt_hint"

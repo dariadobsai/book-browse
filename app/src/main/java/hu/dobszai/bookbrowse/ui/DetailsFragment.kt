@@ -115,9 +115,7 @@ class DetailsFragment : BaseFragment(), CardStackListener {
         Timber.d("onCardDisappeared")
     }
 
-
     override fun onCardDragging(direction: Direction, ratio: Float) {
         Timber.d("onCardDragging")
     }
-
 }

@@ -22,8 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val view = findViewById<View>(R.id.context_view)
         connectivityManager.isNetworkAvailable.observe(this, { hasInternet ->
-            if (hasInternet) view.showSnackBar(getString(R.string.sb_online))
-            else view.showSnackBar(getString(R.string.sb_no_interent))
+            if (!hasInternet) view.showSnackBar(getString(R.string.sb_no_interent))
         })
     }
 

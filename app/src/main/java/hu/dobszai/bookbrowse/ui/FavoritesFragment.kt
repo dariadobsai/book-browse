@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.adapters.BookListAdapter
 import hu.dobszai.bookbrowse.base.BaseFragment
 import hu.dobszai.bookbrowse.base.NavigationCommand
 import hu.dobszai.bookbrowse.databinding.FragmentFavoritesBinding
 import hu.dobszai.bookbrowse.models.Book
+import hu.dobszai.bookbrowse.utils.SwipeToDeleteCallback
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
 
 class FavoritesFragment : BaseFragment(), BookListAdapter.ClickListener {
@@ -35,6 +38,8 @@ class FavoritesFragment : BaseFragment(), BookListAdapter.ClickListener {
         }
 
         setUpRecyclerView()
+
+        deleteFavorite()
 
         return binding.root
     }
@@ -60,14 +65,33 @@ class FavoritesFragment : BaseFragment(), BookListAdapter.ClickListener {
         NavigationUI.setupWithNavController(binding.inToolbar.toolbar, findNavController())
     }
 
-    override fun onBookClick(books: List<Book>, currentBook: Int) {
+    override fun onBookClick(books: List<Book>, bookPosition: Int) {
         _viewModel.navigationCommand.postValue(
             NavigationCommand.To(
                 FavoritesFragmentDirections.actionFavoritesFragmentToDetailsFragment(
-                    currentBook,
+                    bookPosition,
                     books.toTypedArray()
                 )
             )
         )
+    }
+
+    private fun deleteFavorite(){
+        val swipeToDeleteCallback = object : SwipeToDeleteCallback() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val pos = viewHolder.adapterPosition
+                _viewModel.favoriteBooks.value?.drop(pos)
+
+                _viewModel.favoriteBooks.value?.get(pos)?.let {
+                    _viewModel.favoriteOrUnfavoriteBook(
+                        it, false)
+                }
+
+                bookAdapter.notifyItemRemoved(pos)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView( binding.listFavBooks)
     }
 }

@@ -8,6 +8,9 @@ import hu.dobszai.bookbrowse.utils.network.ConnectivityManager
 import hu.dobszai.bookbrowse.utils.showSnackBar
 import org.koin.android.ext.android.inject
 
+/**
+ * Created by Daria Dobszai
+ */
 class MainActivity : AppCompatActivity() {
 
     private val connectivityManager: ConnectivityManager by inject()

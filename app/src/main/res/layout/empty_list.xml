@@ -7,6 +7,7 @@
         android:orientation="vertical"
         android:visibility="@{visibilityCondition ? View.VISIBLE : View.GONE}">
 
+        <!-- Icon made by Martyna Obara from https://lottiefiles.com/ -->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
             android:layout_width="@dimen/empty_list_img_size"

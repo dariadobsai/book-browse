@@ -54,7 +54,7 @@
         <item name="android:fontFamily">@font/livvic_regular</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textSize">@dimen/text_18sp</item>
+        <item name="android:textSize">@dimen/text_16sp</item>
     </style>
 
     <!-- Cards styles -->

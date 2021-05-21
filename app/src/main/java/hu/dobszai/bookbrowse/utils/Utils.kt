@@ -1,10 +1,12 @@
 package hu.dobszai.bookbrowse.utils
 
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
+import com.google.android.material.snackbar.Snackbar
 import hu.dobszai.bookbrowse.R
 
 val appBarConfiguration = AppBarConfiguration(
@@ -39,3 +41,10 @@ fun hideKeyboard(activity: AppCompatActivity) {
     }
 }
 
+fun View.showSnackBar(str: String) {
+    Snackbar.make(
+        this,
+        str,
+        Snackbar.LENGTH_LONG
+    ).show()
+}

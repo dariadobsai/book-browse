@@ -1,6 +1,7 @@
 package hu.dobszai.bookbrowse
 
 import android.app.Application
+import hu.dobszai.bookbrowse.utils.network.ConnectivityManager
 import hu.dobszai.bookbrowse.viewmodels.DetailViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -18,7 +19,12 @@ class MyApplication : Application() {
             viewModel {
                 DetailViewModel(get())
             }
+
+            single {
+                ConnectivityManager(get())
+            }
         }
+
         startKoin {
             androidContext(this@MyApplication)
             modules(listOf(myModule))

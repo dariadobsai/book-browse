@@ -21,7 +21,7 @@ open class BookViewModel(app: Application) : BaseViewModel(app) {
     private val _totalItems = MutableLiveData<Int>()
     val totalItems: LiveData<Int> get() = _totalItems
 
-    val booksFav: LiveData<List<Book>> = bookRepository.favoriteBooks
+    val favoriteBooks: LiveData<List<Book>> = bookRepository.favoriteBooks
 
     fun findBook(searchInput: String) {
         viewModelScope.launch {

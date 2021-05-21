@@ -15,13 +15,16 @@
         <!-- Primary colors -->
         <item name="colorPrimary">@color/light</item>
         <item name="colorOnPrimary">@color/light</item>
-        <item name="colorSurface">@color/light</item>
+        <item name="colorSurface">@color/white</item>
 
         <!-- Text primary colors -->
         <item name="android:textColorPrimary">@color/textPrimaryThemeLight</item>
 
         <!-- Text secondary colors -->
         <item name="android:textColorSecondary">@color/textSecondaryThemeLight</item>
+
+        <!-- EditText style -->
+        <item name="android:editTextStyle">@style/Theme.BookBrowse.EditText</item>
     </style>
 
     <!-- EditText Theme -->

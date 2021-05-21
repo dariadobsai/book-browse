@@ -22,6 +22,9 @@
 
         <!-- Text secondary colors -->
         <item name="android:textColorSecondary">@color/textSecondaryThemeDark</item>
+
+        <!-- EditText style -->
+        <item name="android:editTextStyle">@style/Theme.BookBrowse.EditText</item>
     </style>
 
     <!-- EditText Theme -->

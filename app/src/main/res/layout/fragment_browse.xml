@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:focusableInTouchMode="true"
         tools:context=".ui.BrowseFragment">
 
         <LinearLayout
@@ -23,15 +24,11 @@
                 android:id="@+id/search_view"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edt_height"
-                android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_4x2dp"
                 android:layout_weight="10"
-                android:gravity="start"
                 android:hint="@string/edt_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="?android:textColorSecondary"
-                android:textSize="@dimen/text_16sp"
-                tools:ignore="LabelFor" />
+                tools:ignore="LabelFor"
+                style="@style/edt_style" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_search"
@@ -39,14 +36,8 @@
                 android:layout_height="@dimen/btn_search_height"
                 android:layout_weight="1"
                 android:width="0dp"
-                android:background="@drawable/btn_search"
-                android:fontFamily="@font/montserrat_bold"
                 android:text="@string/btn_search"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_18sp"
-                android:imeOptions="actionDone"
-            android:theme="@style/Theme.BookBrowse.EditText" />
+                style="@style/btn_search_style" />
         </LinearLayout>
 
         <LinearLayout

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.example.android.politicalpreparedness.base.NavigationCommand
 import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.adapters.BookListAdapter
 import hu.dobszai.bookbrowse.base.BaseFragment
+import hu.dobszai.bookbrowse.base.NavigationCommand
 import hu.dobszai.bookbrowse.databinding.FragmentFavoritesBinding
 import hu.dobszai.bookbrowse.models.Book
 import hu.dobszai.bookbrowse.viewmodels.BookViewModel
@@ -46,8 +46,11 @@ class FavoritesFragment : BaseFragment(), BookListAdapter.ClickListener {
     }
 
     override fun populateList() {
-        _viewModel.booksFav.observe(viewLifecycleOwner, {
+        _viewModel.favoriteBooks.observe(viewLifecycleOwner, {
             bookAdapter.setBookList(it)
+            binding.emptyList.visibility = if (it.isEmpty()) {
+                View.VISIBLE
+            } else View.GONE
         })
     }
 

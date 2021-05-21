@@ -2,7 +2,6 @@ package hu.dobszai.bookbrowse.base
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.android.politicalpreparedness.base.NavigationCommand
 
 abstract class BaseFragment : Fragment() {
 

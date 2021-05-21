@@ -9,11 +9,11 @@
     <dimen name="text_14sp">14sp</dimen>
     <dimen name="text_16sp">16sp</dimen>
     <dimen name="text_18sp">18sp</dimen>
-    <dimen name="text_22sp">22sp</dimen>
     <dimen name="text_16x2sp">32sp</dimen>
 
     <!-- Margin -->
-    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_4x2dp">8dp</dimen>
     <dimen name="margin_8x2dp">16dp</dimen>
     <dimen name="margin_12dp">12dp</dimen>
     <dimen name="margin_16x2dp">32dp</dimen>
@@ -37,8 +37,10 @@
 
     <!-- Cards -->
     <dimen name="card_book_list_size">150dp</dimen>
+    <dimen name="swipable_card_size">300dp</dimen>
 
     <!-- Images and Icons -->
     <dimen name="empty_list_img_size">120dp</dimen>
-    <dimen name="btn_details_size">40dp</dimen>
+    <dimen name="book_img_size">80dp</dimen>
+    <dimen name="reaction_icon_size">100dp</dimen>
 </resources>

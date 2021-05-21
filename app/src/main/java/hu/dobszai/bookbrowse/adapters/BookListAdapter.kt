@@ -3,15 +3,13 @@ package hu.dobszai.bookbrowse.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import hu.dobszai.bookbrowse.R
 import hu.dobszai.bookbrowse.databinding.ListBooksBinding
 import hu.dobszai.bookbrowse.models.Book
-import hu.dobszai.bookbrowse.viewmodels.BookViewModel
 
 class BookListAdapter(
-    val clickListener: ClickListener, ) :
+    val clickListener: ClickListener,
+) :
     RecyclerView.Adapter<BookListAdapter.BooksViewHolder>() {
 
     private var list: List<Book> = mutableListOf()

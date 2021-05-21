@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:focusableInTouchMode="true"
+        tools:context=".ui.BrowseFragment">
+
+        <LinearLayout
+            android:id="@+id/search_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8x2dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/in_toolbar">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/search_view"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edt_height"
+                android:maxLength="@integer/maximum_input_length"
+                android:layout_marginEnd="@dimen/margin_4x2dp"
+                android:layout_weight="10"
+                android:hint="@string/edt_hint"
+                tools:ignore="LabelFor"
+                style="@style/edt_style" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_search"
+                android:layout_width="@dimen/btn_search_width"
+                android:layout_height="@dimen/btn_search_height"
+                android:layout_weight="1"
+                android:width="0dp"
+                android:text="@string/btn_search"
+                style="@style/btn_search_style" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/list_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_16x2dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_area">
+
+            <TextView
+                android:id="@+id/total_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8x2dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="@dimen/text_18sp"
+                tools:text="80 results" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8x2dp"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/total_items"
+                tools:listitem="@layout/list_books" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/in_empty_list"
+            layout="@layout/empty_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:visibilityCondition="@{booksViewModel.books.empty}"
+            tools:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_area" />
+
+        <include
+            android:id="@+id/in_toolbar"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="booksViewModel"
+            type="hu.dobszai.bookbrowse.viewmodels.BookViewModel" />
+    </data>
+</layout>

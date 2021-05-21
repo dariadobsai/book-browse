@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_cover_container"
+        android:layout_width="@dimen/swipable_card_size"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:background="?attr/selectableItemBackground"
+        android:elevation="@dimen/elevation_2x5"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+                android:id="@+id/item_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/desc_book_cover"
+                android:scaleType="centerCrop"
+                app:cover="@{bookModel}"
+                tools:src="@drawable/ic_placeholder" />
+
+        <FrameLayout
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+        <ImageView
+                android:layout_width="@dimen/reaction_icon_size"
+                android:layout_height="@dimen/reaction_icon_size"
+                android:layout_gravity="center"
+                android:contentDescription="@string/desc_add_to_favs"
+                android:src="@drawable/ic_favorite_filled"
+                app:tint="@color/like_accentGreen_45_opacity" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/left_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+            <ImageView
+                android:layout_width="@dimen/reaction_icon_size"
+                android:layout_height="@dimen/reaction_icon_size"
+                android:layout_gravity="center"
+                android:contentDescription="@string/desc_not_interested"
+                android:src="@drawable/ic_dislike"
+                app:tint="@color/dislike_45_opacity" />
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="@dimen/margin_8x2dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:elevation="@dimen/elevation_2x5"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/corner_radius"
+            android:layout_gravity="bottom">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/padding_8x2dp"
+                android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@{bookModel}"
+                style="@style/txt_title_small_style" />
+
+            <TextView
+                android:id="@+id/item_authors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_title"
+                app:authors="@{bookModel}"
+                style="@style/txt_title_small_style.authors" />
+
+            <TextView
+                android:id="@+id/item_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_authors"
+                app:description="@{bookModel}"
+                style="@style/txt_desc_style" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <data>
+
+        <variable
+            name="bookModel"
+            type="hu.dobszai.bookbrowse.models.Book" />
+    </data>
+</layout>

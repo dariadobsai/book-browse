@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="@{visibilityCondition ? View.VISIBLE : View.GONE}">
+
+        <!-- Icon made by Martyna Obara from https://lottiefiles.com/ -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="@dimen/empty_list_img_size"
+            android:layout_height="@dimen/empty_list_img_size"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/magnifier" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_50dp"
+            android:padding="@dimen/padding_8dp"
+            android:text="@string/empty_list_txt"
+            style="@style/txt_empty_list_style" />
+    </LinearLayout>
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="visibilityCondition"
+            type="java.lang.Boolean" />
+    </data>
+</layout>

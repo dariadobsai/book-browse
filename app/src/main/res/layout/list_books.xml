@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/card_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/card_book_list_size"
+        android:layout_margin="@dimen/margin_8x2dp"
+        app:cardCornerRadius="@dimen/corner_radius">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_12dp"
+                android:layout_marginTop="@dimen/margin_8x2dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/book_img_contaciner"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/book_title"
+                    style="@style/txt_title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:title="@{bookModel}"
+                    tools:text="Title" />
+
+                <TextView
+                    android:id="@+id/book_authors"
+                    style="@style/txt_title_style.authors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:singleLine="true"
+                    app:authors="@{bookModel}"
+                    tools:text="Author" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/book_img_contaciner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/margin_4x2dp"
+                android:layout_marginStart="@dimen/margin_12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/btn_add_favorite"
+                    style="@style/txt_date_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/book_img"
+                    app:date="@{bookModel}"
+                    tools:text="1990" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/book_img"
+                    android:layout_width="@dimen/book_img_size"
+                    android:layout_height="@dimen/book_img_size"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/desc_book_cover"
+                    android:src="@drawable/ic_placeholder"
+                    app:thumbnail="@{bookModel}" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/book_url"
+                style="@style/txt_url_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_8x2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/book_img_contaciner"
+                app:url="@{bookModel}"
+                tools:text="view in browser" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <data>
+
+        <variable
+            name="bookModel"
+            type="hu.dobszai.bookbrowse.models.Book" />
+
+        <variable
+            name="bookViewModel"
+            type="hu.dobszai.bookbrowse.viewmodels.BookViewModel" />
+    </data>
+</layout>
